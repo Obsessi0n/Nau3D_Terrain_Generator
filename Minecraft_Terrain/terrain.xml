@@ -50,6 +50,7 @@
 		
 		<materialLibs>
 			<materialLib filename="terrain.mlib"/>
+			<materialLib filename="texture.mlib"/>
 		</materialLibs>
 		
 	</assets>
@@ -91,18 +92,24 @@
 			</pass>
 			
 			
-			<!--
-			<pass class="default" name="pass_skybox">
-				<scenes instances = 1>
+		    <pass class="default" name="sky" >
+                <COLOR_CLEAR value=false />
+                <DEPTH_CLEAR value=false />
+				<scenes>
 					<scene name="skybox" />
 				</scenes>
 				<camera name="MainCamera" />
 				<lights>
 					<light name="Sun" />
 				</lights>
+				<injectionMaps>
+					<map toMaterial="*">
+						<shader fromMaterial="textured" fromLibrary="Texture" />
+						<state name="cullFront" fromLibrary="Texture" />
+					</map>
+				</injectionMaps>
 			</pass>
-			-->
-					
+	
 		</pipeline>
 		
 	</pipelines>

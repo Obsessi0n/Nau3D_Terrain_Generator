@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+<materialLib name="Texture">
+
+	<!-- <textures>
+		<cubeMap name="CMHouse" 
+			filePosX="models/textures/sky_left.png"
+			fileNegX="models/textures/sky_right.png"
+			filePosY="models/textures/sky_up.png"
+			fileNegY="models/textures/sky_bottom.png"
+			filePosZ="models/textures/sky_front.png"
+			fileNegZ="models/textures/sky_back.png"	
+		/>
+	</textures> -->
+
+	<shaders>
+		<shader name="textured" 		vs = "shaders/texture/texture.vert" 
+										ps = "shaders/texture/texture.frag" />
+	</shaders>
+	
+	<states>
+		<state name="cullFront">
+			<CULL_TYPE value="FRONT" />
+		</state>
+		<state name="Transparent">
+			<ORDER value="2" />
+			<BLEND value=true />
+			<BLEND_SRC value="SRC_ALPHA" />
+			<BLEND_DST value="ONE_MINUS_SRC_ALPHA" />		
+		</state>
+	</states>
+	
+	<materials>
+		<material name="textured">
+			<shader name="textured">
+				<values>
+					<valueof uniform="m_pvm" 
+							 type="RENDERER" context="CURRENT" 
+							 component="PROJECTION_VIEW_MODEL" />
+					 
+					 
+					<valueof uniform="tex"
+							 type="TEXTURE_BINDING" context="CURRENT"
+							 component="UNIT" id=0 />
+				</values>
+			</shader>
+		</material>
+		
+
+	</materials>
+</materialLib>
