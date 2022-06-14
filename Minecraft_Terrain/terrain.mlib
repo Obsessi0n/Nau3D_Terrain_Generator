@@ -1,0 +1,90 @@
+<?xml version="1.0" ?>
+<materialLib name="terrain_shaders">
+
+    <textures>
+        <texture name="noise" filename="textures/noise/worley.jpg" /> <!-- try another : worley.jpg -->
+    </textures>
+    <shaders>
+        <shader name="terrain" 		ps="shaders/terrain/terrain.frag" 
+                                    gs="shaders/terrain/terrain.geom" 
+                                    vs="shaders/terrain/terrain.vert" />
+
+  <!--      <shader name="water" 		ps="shaders/terrain/water.frag"
+                                    gs="shaders/terrain/water.geom"
+                                    vs="shaders/terrain/water.vert" />-->
+    </shaders>
+
+    <buffers>
+        <buffer name="terrain_point">
+            <SIZE value=16  />
+        </buffer>
+
+        <!--<buffer name="water_point">
+            <SIZE value=16  />
+        </buffer>	-->
+    </buffers>
+    
+    <materials>
+    
+        <material name="terrain">
+            <shader name="terrain">
+                <values>
+                    <valueof uniform="m_pvm" 	type="RENDERER" context="CURRENT" 
+                                                component="PROJECTION_VIEW_MODEL"  />
+                                                
+                    <!--
+                    <valueof uniform="m_normal" 	type="RENDERER" context="CURRENT" 
+                                                component="NORMAL"  />	
+                    -->
+                                               
+                    <valueof uniform="light_dir"	type="LIGHT" context="CURRENT"
+                                                component="DIRECTION" id=0/>
+
+                    <valueof uniform="noise" 	type="TEXTURE_BINDING" context="CURRENT"
+                                                component="UNIT" id=0 />
+                    
+                    <valueof uniform="scale" 	type="RENDERER" context="CURRENT" 
+												component="scale"  />
+
+                    <valueof uniform="tesselation" 	type="RENDERER" context="CURRENT" 
+												component="tesselation"  />
+
+                    <valueof uniform="width" 	type="RENDERER" context="CURRENT" 
+												component="width"  />
+
+                    
+                    <valueof uniform="view_matrix" 	type="RENDERER" context="CURRENT" 
+												component="VIEW" />
+
+                    <valueof uniform="diffuse" 		type="COLOR" context="CURRENT" 
+														component="DIFFUSE" />
+														
+					<valueof uniform="light_dir" 	type="LIGHT" context="CURRENT" 
+														id=0 component="DIRECTION" />
+                            
+                </values>
+            </shader>
+            <textures>
+                <texture name="noise"  UNIT="0" />
+            </textures>
+        </material>
+
+        <!--<material name="water" >
+            <shader name="water" >
+                <values>
+                    <valueof uniform="m_pvm" 	type="RENDERER" context="CURRENT" 
+                                                component="PROJECTION_VIEW_MODEL"  />
+                    <valueof uniform="tesselation" 	type="RENDERER" context="CURRENT" 
+												component="tesselation"  />
+                    <valueof uniform="width" 	type="RENDERER" context="CURRENT" 
+												component="width"  />
+
+                </values>
+            </shader>
+
+            <textures>
+                <texture name="noise"  UNIT="0" />
+            </textures>
+        </material>-->
+    </materials>
+</materialLib>

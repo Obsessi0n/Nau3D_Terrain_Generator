@@ -1,0 +1,17 @@
+newmtl front
+	map_Kd cubemap\sky_front2.png
+
+newmtl back
+	map_Kd cubemap\sky_back2.png
+
+newmtl right
+	map_Kd cubemap\sky_right2.png
+	
+newmtl top
+	map_Kd cubemap\sky_up2.png
+	
+newmtl left
+	map_Kd cubemap\sky_left2.png
+	
+newmtl bottom
+	map_Kd cubemap\sky_bottom2.png
