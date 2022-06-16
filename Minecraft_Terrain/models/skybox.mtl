@@ -1,17 +1,17 @@
 newmtl front
-	map_Kd cubemap\sky_front2.png
+	map_Kd cubemap\dawn.png
 
 newmtl back
-	map_Kd cubemap\sky_back2.png
+	map_Kd cubemap\dawn.png
 
 newmtl right
-	map_Kd cubemap\sky_right2.png
+	map_Kd cubemap\dawn.png
 	
 newmtl top
-	map_Kd cubemap\sky_up2.png
+	map_Kd cubemap\dawn_top.png
 	
 newmtl left
-	map_Kd cubemap\sky_left2.png
+	map_Kd cubemap\dawn.png
 	
 newmtl bottom
-	map_Kd cubemap\sky_bottom2.png
+	map_Kd cubemap\dawn_bottom.png

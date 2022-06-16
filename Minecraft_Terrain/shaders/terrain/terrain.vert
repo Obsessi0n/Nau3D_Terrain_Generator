@@ -3,9 +3,6 @@
 uniform int tesselation;
 
 
-
-
-
 void main () {
 
 	vec4 pos;

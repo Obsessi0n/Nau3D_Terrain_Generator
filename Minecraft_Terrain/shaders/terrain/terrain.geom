@@ -1,5 +1,6 @@
 #version 330
 
+
 layout(points) in;
 layout (triangle_strip, max_vertices=24) out;
 
@@ -8,20 +9,15 @@ uniform mat4 m_pvm;
 uniform float scale;
 uniform int tesselation;
 uniform float width;
-
-
+uniform float altura;
 
 out Data {
     vec2 pos;
     vec4 square_normal;	
 } DataOut;
 
-
-
 //PERLIN NOISE 
-int SEED = 420;
-
-
+int SEED = 42;
 
 int noise2(int x, int y)
 {
@@ -79,6 +75,7 @@ float perlin2d(vec2 position)
     float div = 0.0;
 
     int i;
+    //4 is depth
     for(i=0; i<4; i++)
     {
         div += 256 * amp;
@@ -109,7 +106,7 @@ void main()
     vec4 pos = gl_in[0].gl_Position;
 
     //Calculara altura perlin noise
-    float height = perlin2d(pos.xz);
+    float height = ceil(perlin2d(pos.xz)*altura)/10;
 
     // Certers refer to the position each
     // vertex of a square generated for 

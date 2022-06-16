@@ -75,7 +75,10 @@ void main()
 	  	//height_color = vec4(0.835, 0.827, 0.839,1);
 	}
 	
-	colorOut = (height_color * intensity) + height_color * 0.2;
+	//colorOut = (height_color * intensity) + height_color * 0.2;
 	//vec4 eColor = texture(noise, DataIn.texCoord);
 	//colorOut = eColor;
+
+	//Dirt texture
+	colorOut = texture(dirt, pos);
 }

@@ -4,7 +4,8 @@
 		<attributes>
 			<attribute name="scale" data="FLOAT" type="RENDERER" value=1 />
 			<attribute name="tesselation" data="INT" type="RENDERER" value=500 />
-			<attribute name="width" data="FLOAT" type="RENDERER" value=10 />
+			<attribute name="width" data="FLOAT" type="RENDERER" value=50 />
+			<attribute name="altura" data="FLOAT" type="RENDERER" value=5 />
 		</attributes>
 		<scenes>
 			<scene name="skybox" >
@@ -38,7 +39,7 @@
 				<VIEW x=1.0 y=-1.7 z=1.0 />
 				<UP x=0 y=1 z=0 />
 				<NEAR value=0.1 />
-				<FAR value=100 />
+				<FAR value=300 />
 			</camera>
 		</cameras>
 		
@@ -122,6 +123,9 @@
 
 			<var label="width" type="RENDERER" context="CURRENT" 
 					component="width" def="min=0 max=100 step=0.05" />
+
+			<var label="altura" type="RENDERER" context="CURRENT" 
+					component="altura" def="min=0 max=100 step=0.05" />
 
 			<!--
 			<var label="tesselation" type="RENDERER" context="CURRENT" 

@@ -51,6 +51,9 @@
 
                     <valueof uniform="width" 	type="RENDERER" context="CURRENT" 
 												component="width"  />
+                    
+                    <valueof uniform="altura" 	type="RENDERER" context="CURRENT" 
+												component="altura" />
 
                     
                     <valueof uniform="view_matrix" 	type="RENDERER" context="CURRENT" 
@@ -61,6 +64,8 @@
 														
 					<valueof uniform="light_dir" 	type="LIGHT" context="CURRENT" 
 														id=0 component="DIRECTION" />
+
+
                             
                 </values>
             </shader>
