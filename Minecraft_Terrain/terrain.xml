@@ -4,7 +4,7 @@
 		<attributes>
 			<attribute name="scale" data="FLOAT" type="RENDERER" value=1 />
 			<attribute name="tesselation" data="INT" type="RENDERER" value=660 />
-			<attribute name="width" data="FLOAT" type="RENDERER" value=50 />
+			<attribute name="width" data="FLOAT" type="RENDERER" value=60 />
 			<attribute name="altura" data="FLOAT" type="RENDERER" value=6.2 />
 			<attribute name="SEED" data="INT" type="RENDERER" value=42 />
 		</attributes>

@@ -157,20 +157,15 @@ void main()
         DataOut.square_normal = n[i]; // * m_normal
         DataOut.pos = centers[i];
         //DataOut.square_normal = vec4(0,1,0,0);
-
-
-
-
-
         EmitVertex();
         if(i==0){
             DataOut.TexCoords =  vec2 (0,0);
         }
         else if (i==1){
-            DataOut.TexCoords =  vec2(0,1);
+            DataOut.TexCoords =  vec2(1,0);
         }
         else if (i==2){
-            DataOut.TexCoords =  vec2(1,0);
+            DataOut.TexCoords =  vec2(0,1);
         }
         else{
             DataOut.TexCoords =  vec2(1,1);
@@ -301,18 +296,15 @@ void main()
 
 	    gl_Position = m_pvm * (j[i]);
 
-        DataOut.square_normal = -1.0*n[i]; 
+        DataOut.square_normal = n[i]; 
         DataOut.pos = centers[i];
         if(i==0){
-            DataOut.TexCoords =  vec2(0,0);
+            DataOut.TexCoords =  vec2(1,1);
         }
         else{
-            DataOut.TexCoords =  vec2(1,0);
-        }
-        
+            DataOut.TexCoords =  vec2(0,1);
+        }        
         EmitVertex();
-
-
     }
     for (int i = 0; i < 2; ++i)
     {
@@ -329,13 +321,13 @@ void main()
 
 	    gl_Position = m_pvm * (p[i]);
 
-        DataOut.square_normal = -1.0*n[i]; 
+        DataOut.square_normal = n[i]; 
         DataOut.pos = centers[i];
         if(i==0){
-            DataOut.TexCoords =  vec2(0,1);
+            DataOut.TexCoords =  vec2(1,0);
         }
         else{
-            DataOut.TexCoords =  vec2(1,1);
+            DataOut.TexCoords =  vec2(0,0);
         }
 
         EmitVertex();
@@ -417,13 +409,13 @@ void main()
 
 	    gl_Position = m_pvm * (j[i]);
 
-        DataOut.square_normal = -1.0*n[i]; 
+        DataOut.square_normal = n[i]; 
         DataOut.pos = centers[i];
         if(i==0){
-            DataOut.TexCoords =  vec2(0,0);
+            DataOut.TexCoords =  vec2(1,0);
         }
         else if (i==2){
-            DataOut.TexCoords =  vec2(0,1);
+            DataOut.TexCoords =  vec2(1,1);
         }
         EmitVertex();
 
@@ -445,13 +437,13 @@ void main()
 
 	    gl_Position = m_pvm * (p[i]);
 
-        DataOut.square_normal = -1.0*n[i]; 
+        DataOut.square_normal = n[i]; 
         DataOut.pos = centers[i];
         if (i==0){
-            DataOut.TexCoords =  vec2(1,0);
+            DataOut.TexCoords =  vec2(0,0);
         }
         else{
-            DataOut.TexCoords =  vec2(1,1);
+            DataOut.TexCoords =  vec2(0,1);
         }
         EmitVertex();
 
