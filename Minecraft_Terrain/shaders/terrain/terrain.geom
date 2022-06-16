@@ -14,6 +14,7 @@ uniform int SEED;
 
 out Data {
     vec2 pos;
+    vec2 TexCoords;
     vec4 square_normal;	
 } DataOut;
 
@@ -95,9 +96,11 @@ void main()
 {    
 
     // Vertices
+    //Parte de cima
     vec4 p[4];
 
-    // Vertices
+    // Vertices~
+    //Baixo
     vec4 j[4];
 
 
@@ -154,7 +157,24 @@ void main()
         DataOut.square_normal = n[i]; // * m_normal
         DataOut.pos = centers[i];
         //DataOut.square_normal = vec4(0,1,0,0);
+
+
+
+
+
         EmitVertex();
+        if(i==0){
+            DataOut.TexCoords =  vec2 (0,0);
+        }
+        else if (i==1){
+            DataOut.TexCoords =  vec2(0,1);
+        }
+        else if (i==2){
+            DataOut.TexCoords =  vec2(1,0);
+        }
+        else{
+            DataOut.TexCoords =  vec2(1,1);
+        }
     }
     EndPrimitive();
 
@@ -162,6 +182,8 @@ void main()
     //Top
     for (int i = 0; i < 4; ++i)
     {
+
+        
         float c  = height+0.1 / tesselation;
         float x1 = height+0.1 / tesselation;
         float x2 = height+0.1 / tesselation;
@@ -177,8 +199,26 @@ void main()
         //DataOut.square_normal = normalize( vec4((c-x1)+(x2-c) , 1 , (c-z1)+(z2-c) , 0) );
         DataOut.square_normal = n[i]; // * m_normal
         DataOut.pos = centers[i];
+
+
+        if(i==0){
+            DataOut.TexCoords =  vec2(0,0);
+        }
+        else if (i==1){
+            DataOut.TexCoords =  vec2(0,1);
+        }
+        else if (i==2){
+            DataOut.TexCoords =  vec2(1,0);
+        }
+        else{
+            DataOut.TexCoords =  vec2(1,1);
+        }
+
+
         //DataOut.square_normal = vec4(0,1,0,0);
         EmitVertex();
+
+
     }
     EndPrimitive();
     
@@ -200,7 +240,19 @@ void main()
 
         DataOut.square_normal = n[i]; 
         DataOut.pos = centers[i];
+
+
+        if (i==2){
+            DataOut.TexCoords =  vec2(1,0);
+        }
+        else{
+            DataOut.TexCoords =  vec2(1,1);
+        }
+
         EmitVertex();
+
+        
+
     }
     for (int i = 2; i < 4; ++i)
     {
@@ -219,7 +271,18 @@ void main()
 
         DataOut.square_normal = n[i]; 
         DataOut.pos = centers[i];
+
+
+
+        if (i==2){
+            DataOut.TexCoords =  vec2(0,0);
+        }
+        else{
+            DataOut.TexCoords =  vec2(0,1);
+        }
         EmitVertex();
+
+
     }
 
     //Back p(0,2) j(0,2)
@@ -240,7 +303,16 @@ void main()
 
         DataOut.square_normal = -1.0*n[i]; 
         DataOut.pos = centers[i];
+        if(i==0){
+            DataOut.TexCoords =  vec2(0,0);
+        }
+        else{
+            DataOut.TexCoords =  vec2(1,0);
+        }
+        
         EmitVertex();
+
+
     }
     for (int i = 0; i < 2; ++i)
     {
@@ -259,7 +331,16 @@ void main()
 
         DataOut.square_normal = -1.0*n[i]; 
         DataOut.pos = centers[i];
+        if(i==0){
+            DataOut.TexCoords =  vec2(0,1);
+        }
+        else{
+            DataOut.TexCoords =  vec2(1,1);
+        }
+
         EmitVertex();
+
+
     }
 
     //Right p(1,3) j(1,3)
@@ -280,7 +361,16 @@ void main()
 
         DataOut.square_normal = n[i]; 
         DataOut.pos = centers[i];
+        if(i==1){
+            DataOut.TexCoords =  vec2(0,1);
+        }
+        else if (i==3){
+            DataOut.TexCoords =  vec2(1,1);
+        }
         EmitVertex();
+
+
+        
     }
     for (int i = 1; i < 4; i=i+2)
     {
@@ -299,7 +389,16 @@ void main()
 
         DataOut.square_normal = n[i]; 
         DataOut.pos = centers[i];
+
+        if (i==1){
+            DataOut.TexCoords =  vec2(0,0);
+        }
+        else{
+            DataOut.TexCoords =  vec2(0,1);
+        }
         EmitVertex();
+
+
     }
 
     //Left p(0,3) j(1,3)
@@ -320,7 +419,16 @@ void main()
 
         DataOut.square_normal = -1.0*n[i]; 
         DataOut.pos = centers[i];
+        if(i==0){
+            DataOut.TexCoords =  vec2(0,0);
+        }
+        else if (i==2){
+            DataOut.TexCoords =  vec2(0,1);
+        }
         EmitVertex();
+
+
+
     }
     for (int i = 0; i < 3; i=i+2)
     {
@@ -339,14 +447,17 @@ void main()
 
         DataOut.square_normal = -1.0*n[i]; 
         DataOut.pos = centers[i];
+        if (i==0){
+            DataOut.TexCoords =  vec2(1,0);
+        }
+        else{
+            DataOut.TexCoords =  vec2(1,1);
+        }
         EmitVertex();
+
+
     }
-    EndPrimitive();
-
-
-    //Tree
-
-    
+    EndPrimitive();   
     
 
 }

@@ -8,6 +8,7 @@ uniform int tesselation;
 
 in Data {
 	vec2 pos;
+	vec2 TexCoords;
 	vec4 square_normal;
 } DataIn;
 
@@ -35,7 +36,7 @@ void main()
 	vec4 middle_mountain = vec4(0.772, 0.847, 0.729,1);
 	vec4 high_mountain   = vec4(0.835, 0.827, 0.839,1);
 
-	float height = texture(noise,DataIn.pos/tesselation).x;
+	/*float height = texture(noise,DataIn.pos/tesselation).x;
 
 	
 
@@ -73,12 +74,12 @@ void main()
 		height_color = mix(middle_mountain, high_mountain, (height - 0.9) * (1/0.1));
 
 	}
-	
+	*/
 	vec4 dirt = vec4(0.803, 0.400, 0.10,1);
 
-	colorOut = (height_color * intensity) + height_color * 0.2;
-	//vec4 eColor = texture(noise, DataIn.texCoord);
-	//colorOut = eColor;
+	//colorOut = (height_color * intensity) + height_color * 0.2;
+	vec4 eColor = texture(noise, DataIn.TexCoords);
+	colorOut = eColor;
 
 	//Dirt texture
 	//colorOut = texture(dirt, pos);

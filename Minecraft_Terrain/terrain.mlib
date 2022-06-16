@@ -2,7 +2,7 @@
 <materialLib name="terrain_shaders">
 
     <textures>
-        <texture name="noise" filename="textures/noise/worley.jpg" />
+        <texture name="noise" filename="textures/noise/dirt.png" />
     </textures>
     <shaders>
         <shader name="terrain" 		ps="shaders/terrain/terrain.frag" 

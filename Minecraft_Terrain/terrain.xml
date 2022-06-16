@@ -31,7 +31,7 @@
 		<cameras>
 			<camera name="MainCamera">
 				<viewport name="MainViewport" />
-				<POSITION x=0 y=10 z=0 />
+				<POSITION x=0 y=1 z=0 />
 				<VIEW x=1.0 y=-1.7 z=1.0 />
 				<UP x=0 y=1 z=0 />
 				<NEAR value=0.1 />
