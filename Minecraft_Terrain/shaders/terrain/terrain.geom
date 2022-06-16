@@ -2,7 +2,7 @@
 
 
 layout(points) in;
-layout (triangle_strip, max_vertices=24) out;
+layout (triangle_strip, max_vertices=20) out;
 
 uniform sampler2D noise;
 uniform mat4 m_pvm;
@@ -137,7 +137,7 @@ void main()
     j[3] = vec4(((pos.x + 1)/tesselation)*width, height+0.1, ((pos.z + 1)/tesselation)*width, 1);
 
 
-    
+    /*
     //Bottom
     for (int i = 0; i < 4; ++i)
     {
@@ -153,26 +153,25 @@ void main()
         n[i] = normalize(vec4(x,y,z,0));
 
 	    gl_Position = m_pvm * (p[i]);
-        //DataOut.square_normal = normalize( vec4((c-x1)+(x2-c) , 1 , (c-z1)+(z2-c) , 0) );
-        DataOut.square_normal = n[i]; // * m_normal
+        DataOut.square_normal = -1*n[i]; // * m_normal
         DataOut.pos = centers[i];
-        //DataOut.square_normal = vec4(0,1,0,0);
+
         EmitVertex();
         if(i==0){
-            DataOut.TexCoords =  vec2 (0,0);
+            DataOut.TexCoords =  vec2 (1,1);
         }
         else if (i==1){
-            DataOut.TexCoords =  vec2(1,0);
-        }
-        else if (i==2){
             DataOut.TexCoords =  vec2(0,1);
         }
+        else if (i==2){
+            DataOut.TexCoords =  vec2(1,0);
+        }
         else{
-            DataOut.TexCoords =  vec2(1,1);
+            DataOut.TexCoords =  vec2(0,0);
         }
     }
     EndPrimitive();
-
+*/
 
     //Top
     for (int i = 0; i < 4; ++i)
@@ -217,7 +216,7 @@ void main()
     }
     EndPrimitive();
     
-    //Front p(2,3) j(2,3)
+    //Back p(2,3) j(2,3)
     for (int i = 2; i < 4; ++i)
     {
         float c  = height+0.1 / tesselation;
@@ -232,7 +231,7 @@ void main()
         n[i] = normalize(vec4(x,y,z,0));
 
 	    gl_Position = m_pvm * (j[i]);
-
+        
         DataOut.square_normal = n[i]; 
         DataOut.pos = centers[i];
 
@@ -244,9 +243,7 @@ void main()
             DataOut.TexCoords =  vec2(1,1);
         }
 
-        EmitVertex();
-
-        
+        EmitVertex();       
 
     }
     for (int i = 2; i < 4; ++i)
@@ -263,12 +260,8 @@ void main()
         n[i] = normalize(vec4(x,y,z,0));
 
 	    gl_Position = m_pvm * (p[i]);
-
-        DataOut.square_normal = n[i]; 
+        DataOut.square_normal = -n[i]; 
         DataOut.pos = centers[i];
-
-
-
         if (i==2){
             DataOut.TexCoords =  vec2(0,0);
         }
@@ -279,8 +272,8 @@ void main()
 
 
     }
-
-    //Back p(0,2) j(0,2)
+EndPrimitive();  
+    //Front p(0,2) j(0,2)
     for (int i = 0; i < 2; ++i)
     {
         float c  = height+0.1 / tesselation;
@@ -302,7 +295,7 @@ void main()
             DataOut.TexCoords =  vec2(1,1);
         }
         else{
-            DataOut.TexCoords =  vec2(0,1);
+            DataOut.TexCoords =  vec2(1,0);
         }        
         EmitVertex();
     }
@@ -324,7 +317,7 @@ void main()
         DataOut.square_normal = n[i]; 
         DataOut.pos = centers[i];
         if(i==0){
-            DataOut.TexCoords =  vec2(1,0);
+            DataOut.TexCoords =  vec2(0,1);
         }
         else{
             DataOut.TexCoords =  vec2(0,0);
@@ -334,7 +327,7 @@ void main()
 
 
     }
-
+EndPrimitive();  
     //Right p(1,3) j(1,3)
     for (int i = 1; i < 4; i=i+2)
     {
@@ -351,17 +344,15 @@ void main()
 
 	    gl_Position = m_pvm * (j[i]);
 
-        DataOut.square_normal = n[i]; 
+        DataOut.square_normal = -1*n[i]; 
         DataOut.pos = centers[i];
         if(i==1){
-            DataOut.TexCoords =  vec2(0,1);
+            DataOut.TexCoords =  vec2(1,0);
         }
         else if (i==3){
             DataOut.TexCoords =  vec2(1,1);
         }
         EmitVertex();
-
-
         
     }
     for (int i = 1; i < 4; i=i+2)
@@ -376,12 +367,9 @@ void main()
         float z = ((z1-c)+(c-z2))*scale;
         float y = sqrt(1-pow(x,2)-pow(z,2));
         n[i] = normalize(vec4(x,y,z,0));
-
 	    gl_Position = m_pvm * (p[i]);
-
-        DataOut.square_normal = n[i]; 
+        DataOut.square_normal = -1*n[i]; 
         DataOut.pos = centers[i];
-
         if (i==1){
             DataOut.TexCoords =  vec2(0,0);
         }
@@ -392,7 +380,7 @@ void main()
 
 
     }
-
+EndPrimitive();  
     //Left p(0,3) j(1,3)
     for (int i = 0; i < 3; i=i+2)
     {
@@ -422,6 +410,7 @@ void main()
 
 
     }
+    
     for (int i = 0; i < 3; i=i+2)
     {
         float c  = height+0.1 / tesselation;
