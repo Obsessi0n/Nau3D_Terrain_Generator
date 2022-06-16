@@ -10,6 +10,7 @@ uniform float scale;
 uniform int tesselation;
 uniform float width;
 uniform float altura;
+uniform int SEED;
 
 out Data {
     vec2 pos;
@@ -17,7 +18,7 @@ out Data {
 } DataOut;
 
 //PERLIN NOISE 
-int SEED = 42;
+//int SEED = 12;
 
 int noise2(int x, int y)
 {
@@ -340,9 +341,12 @@ void main()
         DataOut.pos = centers[i];
         EmitVertex();
     }
-
-
     EndPrimitive();
+
+
+    //Tree
+
+    
     
 
 }
