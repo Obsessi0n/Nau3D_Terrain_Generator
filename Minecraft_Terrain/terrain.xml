@@ -34,8 +34,8 @@
 				<POSITION x=0 y=1 z=0 />
 				<VIEW x=1.0 y=-1.7 z=1.0 />
 				<UP x=0 y=1 z=0 />
-				<NEAR value=0.1 />
-				<FAR value=300 />
+				<NEAR value=0.2 />
+				<FAR value=200 />
 			</camera>
 		</cameras>
 		

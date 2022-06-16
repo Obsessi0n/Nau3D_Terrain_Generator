@@ -99,10 +99,9 @@ void main()
     //Parte de cima
     vec4 p[4];
 
-    // Vertices~
+    // Vertices
     //Baixo
     vec4 j[4];
-
 
     // Normals
     vec4 n[4];
@@ -120,11 +119,6 @@ void main()
     centers[1] = pos.xz + vec2(0,1);
     centers[2] = pos.xz + vec2(1,0);
     centers[3] = pos.xz + vec2(1,1);
-
-    
-
-    //float scale_x = 0.1;
-    //float scale_z = 0.1;
 
     p[0] = vec4(((pos.x    )/tesselation)*width, height, ((pos.z    )/tesselation)*width, 1);
     p[1] = vec4(((pos.x    )/tesselation)*width, height, ((pos.z + 1)/tesselation)*width, 1);
@@ -190,8 +184,8 @@ void main()
         n[i] = normalize(vec4(x,y,z,0));
 
 	    gl_Position = m_pvm * (j[i]);
-        //DataOut.square_normal = normalize( vec4((c-x1)+(x2-c) , 1 , (c-z1)+(z2-c) , 0) );
-        DataOut.square_normal = n[i]; // * m_normal
+        
+        DataOut.square_normal = n[i];
         DataOut.pos = centers[i];
 
 
@@ -209,7 +203,7 @@ void main()
         }
 
 
-        //DataOut.square_normal = vec4(0,1,0,0);
+
         EmitVertex();
 
 
@@ -272,7 +266,8 @@ void main()
 
 
     }
-EndPrimitive();  
+    EndPrimitive();  
+
     //Front p(0,2) j(0,2)
     for (int i = 0; i < 2; ++i)
     {
@@ -327,7 +322,8 @@ EndPrimitive();
 
 
     }
-EndPrimitive();  
+    EndPrimitive();  
+
     //Right p(1,3) j(1,3)
     for (int i = 1; i < 4; i=i+2)
     {
@@ -380,7 +376,8 @@ EndPrimitive();
 
 
     }
-EndPrimitive();  
+    EndPrimitive();  
+
     //Left p(0,3) j(1,3)
     for (int i = 0; i < 3; i=i+2)
     {
@@ -435,9 +432,8 @@ EndPrimitive();
             DataOut.TexCoords =  vec2(0,1);
         }
         EmitVertex();
-
-
     }
+
     EndPrimitive();   
     
 
