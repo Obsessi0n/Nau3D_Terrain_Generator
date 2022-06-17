@@ -16,6 +16,7 @@ out Data {
     vec2 pos;
     vec2 TexCoords;
     vec4 square_normal;	
+    vec4 posicao;
 } DataOut;
 
 //PERLIN NOISE 
@@ -107,7 +108,7 @@ void main()
     vec4 n[4];
 
     vec4 pos = gl_in[0].gl_Position;
-
+    DataOut.posicao = pos;
     //Calculara altura perlin noise
     float height = ceil(perlin2d(pos.xz)*altura)/10;
 

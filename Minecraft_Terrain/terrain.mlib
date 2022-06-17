@@ -3,6 +3,9 @@
 
     <textures>
         <texture name="noise" filename="textures/noise/dirt.png" />
+        <texture name="stone" filename="textures/noise/stone.png" />
+        <texture name="snow" filename="textures/noise/snow.png" />
+        <texture name="grass" filename="textures/noise/grass.png" />
     </textures>
     <shaders>
         <shader name="terrain" 		ps="shaders/terrain/terrain.frag" 
@@ -31,6 +34,12 @@
 
                     <valueof uniform="noise" 	type="TEXTURE_BINDING" context="CURRENT"
                                                 component="UNIT" id=0 />
+                    <valueof uniform="stone" 	type="TEXTURE_BINDING" context="CURRENT"
+                                                component="UNIT" id=1 />
+                    <valueof uniform="snow" 	type="TEXTURE_BINDING" context="CURRENT"
+                                                component="UNIT" id=2 />
+                    <valueof uniform="grass" 	type="TEXTURE_BINDING" context="CURRENT"
+                                                component="UNIT" id=3 />
                     
                     <valueof uniform="scale" 	type="RENDERER" context="CURRENT" 
 												component="scale"  />
@@ -42,6 +51,8 @@
 												component="width"  />
                     <valueof uniform="SEED" 	type="RENDERER" context="CURRENT" 
 												component="SEED"  />
+                    <valueof uniform="TEXSEED" 	type="RENDERER" context="CURRENT" 
+												component="TEXSEED"  />
                     
                     <valueof uniform="altura" 	type="RENDERER" context="CURRENT" 
 												component="altura" />
@@ -59,6 +70,9 @@
             </shader>
             <textures>
                 <texture name="noise"  UNIT="0" />
+                <texture name="stone"  UNIT="1" />
+                <texture name="snow"  UNIT="2" />
+                <texture name="grass"  UNIT="3" />
             </textures>
         </material>
     </materials>
