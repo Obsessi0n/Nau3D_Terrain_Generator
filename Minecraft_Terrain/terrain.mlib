@@ -7,12 +7,16 @@
         <texture name="snow" filename="textures/noise/snow.png" />
         <texture name="grass" filename="textures/noise/grass.png" />
     </textures>
+
     <shaders>
         <shader name="terrain" 		ps="shaders/terrain/terrain.frag" 
                                     gs="shaders/terrain/terrain.geom" 
                                     vs="shaders/terrain/terrain.vert" />
 
     </shaders>
+
+
+
 
     <buffers>
         <buffer name="terrain_point">
@@ -65,7 +69,8 @@
 														component="DIFFUSE" />
 														
 					<valueof uniform="light_dir" 	type="LIGHT" context="CURRENT" 
-														id=0 component="DIRECTION" />                            
+														id=0 component="DIRECTION" />     
+                   
                 </values>
             </shader>
             <textures>

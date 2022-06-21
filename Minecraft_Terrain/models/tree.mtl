@@ -1,0 +1,10 @@
+# Blender MTL File: 'tree2.blend'
+# Material Count: 2
+
+newmtl Material
+    map_Kd cubemap\dawn.png
+
+
+newmtl Material.001
+    map_Kd cubemap\dawn.png
+

@@ -11,6 +11,9 @@
 		<state name="cullFront">
 			<CULL_TYPE value="FRONT" />
 		</state>
+		<state name="cullBack">
+			<CULL_TYPE value="BACK" />
+		</state>
 		<state name="Transparent">
 			<ORDER value="2" />
 			<BLEND value=true />
@@ -19,6 +22,8 @@
 		</state>
 	</states>
 	
+
+
 	<materials>
 		<material name="textured">
 			<shader name="textured">

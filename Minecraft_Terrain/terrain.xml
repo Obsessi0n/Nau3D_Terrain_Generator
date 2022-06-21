@@ -14,9 +14,12 @@
 				<SCALE x=200 y=200 z=200 />
 				<file name="models/skybox.obj"/>
 			</scene>
-			<scene name="Bench" param="UNITIZE">
-				<file name="rainbowBench.obj"/>
+
+			<scene name="tree" >
+				<SCALE x=0.1 y=0.1 z=0.1 />
+				<file name="models/tree.obj"/>
 			</scene>
+
 
 			<scene name="terrain" >
 				<buffers name="terrain" primitive="POINTS" material="terrain" >
@@ -66,9 +69,7 @@
 				<scenes instances = 400000>
 					<scene name="terrain" />
 				</scenes>
-				<scenes>
-					<scene name="Bench" />
-				</scenes>
+
 				<camera name="MainCamera" />
 				<lights>
 					<light name="Sun" />
@@ -96,6 +97,24 @@
 					</map>
 				</injectionMaps>
 			</pass>
+
+			 <!--<pass class="default" name="tree" >
+                <COLOR_CLEAR value=false />
+                <DEPTH_CLEAR value=false />
+				<scenes>
+					<scene name="tree" />
+				</scenes>
+				<camera name="MainCamera" />
+				<lights>
+					<light name="Sun" />
+				</lights>
+				<injectionMaps>
+					<map toMaterial="*">
+						<shader fromMaterial="textured" fromLibrary="Texture" />
+						<state name="cullBack" fromLibrary="Texture" />
+					</map>
+				</injectionMaps>
+			</pass>-->
 	
 		</pipeline>
 		
