@@ -121,7 +121,7 @@ void main()
 	}
 	else{
         diffuse = texture(snow, DataIn.TexCoords);
-
+        
 	}
 	
 

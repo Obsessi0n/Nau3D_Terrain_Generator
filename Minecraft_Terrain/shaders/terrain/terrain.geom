@@ -2,7 +2,7 @@
 
 
 layout(points) in;
-layout (triangle_strip, max_vertices=420) out;
+layout (triangle_strip, max_vertices=428) out;
 
 uniform sampler2D noise;
 uniform mat4 m_pvm;
@@ -365,14 +365,6 @@ void CubeGenerator(vec4 pos, float height, float size, float width, float depth)
 }
 
 
-
-void Tree(vec4 pos, float height, float width){
-    //trunk
-    CubeGenerator(pos, height+0.1, width, width, 0.4);
-
-
-    
-}
 void main()
 {
     vec4 pos = gl_in[0].gl_Position;
@@ -384,10 +376,6 @@ void main()
 
     //Desenhar Cubos do mapa
     CubeGenerator(pos, height, width, width, depth);
-
-    //Desenhar Arvores
-    if(perlin2d(pos.xz)>0.88)
-        Tree(pos, height, width);
 }
 
 
