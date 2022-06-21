@@ -2,7 +2,7 @@
 
 
 layout(points) in;
-layout (triangle_strip, max_vertices=20) out;
+layout (triangle_strip, max_vertices=420) out;
 
 uniform sampler2D noise;
 uniform mat4 m_pvm;
@@ -12,16 +12,16 @@ uniform float width;
 uniform float altura;
 uniform int SEED;
 
+
+
 out Data {
     vec2 pos;
     vec2 TexCoords;
-    vec4 square_normal;	
+    vec3 normal;
     vec4 posicao;
 } DataOut;
 
 //PERLIN NOISE 
-//int SEED = 12;
-
 int noise2(int x, int y)
 {
     int hash[256] = int[256](208,34,231,213,32,248,233,56,161,78,24,140,71,48,140,254,245,255,247,247,40,
@@ -93,6 +93,230 @@ float perlin2d(vec2 position)
 //////////////////////////////////
 
 
+void Trunk(float height){
+    // Vertices
+    //Parte de cima
+    vec4 p[4];
+
+    // Vertices
+    //Baixo
+    vec4 j[4];
+
+    // Normals
+    vec4 n[4];
+
+    vec4 pos = gl_in[0].gl_Position;
+    DataOut.posicao = pos;
+
+
+    // Certers refer to the position each
+    // vertex of a square generated for 
+    // each geometry shader
+    vec2 centers[4];
+    centers[0] = pos.xz + vec2(0,0);
+    centers[1] = pos.xz + vec2(0,1);
+    centers[2] = pos.xz + vec2(1,0);
+    centers[3] = pos.xz + vec2(1,1);
+
+    p[0] = vec4(((pos.x    )/tesselation)*width, height+0.1, ((pos.z    )/tesselation)*width, 1);
+    p[1] = vec4(((pos.x    )/tesselation)*width, height+0.1, ((pos.z + 1)/tesselation)*width, 1);
+    p[2] = vec4(((pos.x + 1)/tesselation)*width, height+0.1, ((pos.z    )/tesselation)*width, 1);
+    p[3] = vec4(((pos.x + 1)/tesselation)*width, height+0.1, ((pos.z + 1)/tesselation)*width, 1);
+
+    j[0] = vec4(((pos.x    )/tesselation)*width, height+0.4, ((pos.z    )/tesselation)*width, 1);
+    j[1] = vec4(((pos.x    )/tesselation)*width, height+0.4, ((pos.z + 1)/tesselation)*width, 1);
+    j[2] = vec4(((pos.x + 1)/tesselation)*width, height+0.4, ((pos.z    )/tesselation)*width, 1);
+    j[3] = vec4(((pos.x + 1)/tesselation)*width, height+0.4, ((pos.z + 1)/tesselation)*width, 1);
+
+
+    //Top
+    for (int i = 0; i < 4; ++i)
+    {
+
+	    gl_Position = m_pvm * (j[i]);
+        
+        DataOut.normal = vec3(0,1,0);
+        DataOut.pos = centers[i];
+
+
+        if(i==0){
+            DataOut.TexCoords =  vec2(0,0);
+        }
+        else if (i==1){
+            DataOut.TexCoords =  vec2(0,1);
+        }
+        else if (i==2){
+            DataOut.TexCoords =  vec2(1,0);
+        }
+        else{
+            DataOut.TexCoords =  vec2(1,1);
+        }
+
+
+
+        EmitVertex();
+
+
+    }
+    EndPrimitive();
+    
+    //Back p(2,3) j(2,3)
+    for (int i = 2; i < 4; ++i)
+    {
+
+
+	    gl_Position = m_pvm * (j[i]);        
+        DataOut.normal = vec3(-1,0,0);
+        DataOut.pos = centers[i];
+
+
+        if (i==2){
+            DataOut.TexCoords =  vec2(1,0);
+        }
+        else{
+            DataOut.TexCoords =  vec2(1,1);
+        }
+
+        EmitVertex();       
+
+    }
+    for (int i = 2; i < 4; ++i)
+    {
+
+
+	    gl_Position = m_pvm * (p[i]);
+        DataOut.normal = vec3(-1,0,0);
+        DataOut.pos = centers[i];
+        if (i==2){
+            DataOut.TexCoords =  vec2(0,0);
+        }
+        else{
+            DataOut.TexCoords =  vec2(0,1);
+        }
+        EmitVertex();
+
+
+    }
+    EndPrimitive();  
+
+    //Front p(0,2) j(0,2)
+    for (int i = 0; i < 2; ++i)
+    {
+
+        DataOut.normal = vec3(1,0,0);
+	    gl_Position = m_pvm * (j[i]);
+
+ 
+        DataOut.pos = centers[i];
+        if(i==0){
+            DataOut.TexCoords =  vec2(1,1);
+        }
+        else{
+            DataOut.TexCoords =  vec2(1,0);
+        }        
+        EmitVertex();
+    }
+    for (int i = 0; i < 2; ++i)
+    {
+
+        DataOut.normal = vec3(1,0,0);
+	    gl_Position = m_pvm * (p[i]);
+
+        DataOut.pos = centers[i];
+        if(i==0){
+            DataOut.TexCoords =  vec2(0,1);
+        }
+        else{
+            DataOut.TexCoords =  vec2(0,0);
+        }
+
+        EmitVertex();
+
+
+    }
+    EndPrimitive();  
+
+    //Right p(1,3) j(1,3)
+    for (int i = 1; i < 4; i=i+2)
+    {
+
+
+	    gl_Position = m_pvm * (j[i]);
+
+        DataOut.normal = vec3(0,0,1);
+        DataOut.pos = centers[i];
+        if(i==1){
+            DataOut.TexCoords =  vec2(1,0);
+        }
+        else if (i==3){
+            DataOut.TexCoords =  vec2(1,1);
+        }
+        EmitVertex();
+        
+    }
+    for (int i = 1; i < 4; i=i+2)
+    {
+
+        DataOut.normal = vec3(0,0,1);
+	    gl_Position = m_pvm * (p[i]);
+
+        DataOut.pos = centers[i];
+        if (i==1){
+            DataOut.TexCoords =  vec2(0,0);
+        }
+        else{
+            DataOut.TexCoords =  vec2(0,1);
+        }
+        EmitVertex();
+
+
+    }
+    EndPrimitive();  
+
+    //Left p(0,3) j(1,3)
+    for (int i = 0; i < 3; i=i+2)
+    {
+
+        DataOut.normal = vec3(0,0,-1);
+	    gl_Position = m_pvm * (j[i]);
+
+        DataOut.pos = centers[i];
+        if(i==0){
+            DataOut.TexCoords =  vec2(1,0);
+        }
+        else if (i==2){
+            DataOut.TexCoords =  vec2(1,1);
+        }
+        EmitVertex();
+
+
+
+    }
+    
+    for (int i = 0; i < 3; i=i+2)
+    {
+
+    
+        DataOut.normal = vec3(0,0,-1);
+	    gl_Position = m_pvm * (p[i]);
+
+
+        DataOut.pos = centers[i];
+        if (i==0){
+            DataOut.TexCoords =  vec2(0,0);
+        }
+        else{
+            DataOut.TexCoords =  vec2(0,1);
+        }
+        EmitVertex();
+    }
+
+    EndPrimitive();   
+}
+
+void Leafs(float height){
+
+}
 void main()
 {    
 
@@ -132,42 +356,6 @@ void main()
     j[3] = vec4(((pos.x + 1)/tesselation)*width, height+0.1, ((pos.z + 1)/tesselation)*width, 1);
 
 
-    /*
-    //Bottom
-    for (int i = 0; i < 4; ++i)
-    {
-        float c  = height / tesselation;
-        float x1 = height / tesselation;
-        float x2 = height / tesselation;
-        float z1 = height / tesselation;
-        float z2 = height / tesselation;
-
-        float x = ((x1-c)+(c-x2))*scale;
-        float z = ((z1-c)+(c-z2))*scale;
-        float y = sqrt(1-pow(x,2)-pow(z,2));
-        n[i] = normalize(vec4(x,y,z,0));
-
-	    gl_Position = m_pvm * (p[i]);
-        DataOut.square_normal = -1*n[i]; // * m_normal
-        DataOut.pos = centers[i];
-
-        EmitVertex();
-        if(i==0){
-            DataOut.TexCoords =  vec2 (1,1);
-        }
-        else if (i==1){
-            DataOut.TexCoords =  vec2(0,1);
-        }
-        else if (i==2){
-            DataOut.TexCoords =  vec2(1,0);
-        }
-        else{
-            DataOut.TexCoords =  vec2(0,0);
-        }
-    }
-    EndPrimitive();
-*/
-
     //Top
     for (int i = 0; i < 4; ++i)
     {
@@ -178,7 +366,6 @@ void main()
         float x2 = height+0.1 / tesselation;
         float z1 = height+0.1 / tesselation;
         float z2 = height+0.1 / tesselation;
-
         float x = ((x1-c)+(c-x2))*scale;
         float z = ((z1-c)+(c-z2))*scale;
         float y = sqrt(1-pow(x,2)-pow(z,2));
@@ -186,7 +373,7 @@ void main()
 
 	    gl_Position = m_pvm * (j[i]);
         
-        DataOut.square_normal = n[i];
+        DataOut.normal = vec3(0,1,0);
         DataOut.pos = centers[i];
 
 
@@ -225,9 +412,8 @@ void main()
         float y = sqrt(1-pow(x,2)-pow(z,2));
         n[i] = normalize(vec4(x,y,z,0));
 
-	    gl_Position = m_pvm * (j[i]);
-        
-        DataOut.square_normal = n[i]; 
+	    gl_Position = m_pvm * (j[i]);        
+        DataOut.normal = vec3(-1,0,0);
         DataOut.pos = centers[i];
 
 
@@ -255,7 +441,7 @@ void main()
         n[i] = normalize(vec4(x,y,z,0));
 
 	    gl_Position = m_pvm * (p[i]);
-        DataOut.square_normal = -n[i]; 
+        DataOut.normal = vec3(-1,0,0);
         DataOut.pos = centers[i];
         if (i==2){
             DataOut.TexCoords =  vec2(0,0);
@@ -282,10 +468,10 @@ void main()
         float z = ((z1-c)+(c-z2))*scale;
         float y = sqrt(1-pow(x,2)-pow(z,2));
         n[i] = normalize(vec4(x,y,z,0));
-
+        DataOut.normal = vec3(1,0,0);
 	    gl_Position = m_pvm * (j[i]);
 
-        DataOut.square_normal = n[i]; 
+ 
         DataOut.pos = centers[i];
         if(i==0){
             DataOut.TexCoords =  vec2(1,1);
@@ -307,10 +493,9 @@ void main()
         float z = ((z1-c)+(c-z2))*scale;
         float y = sqrt(1-pow(x,2)-pow(z,2));
         n[i] = normalize(vec4(x,y,z,0));
-
+        DataOut.normal = vec3(1,0,0);
 	    gl_Position = m_pvm * (p[i]);
 
-        DataOut.square_normal = n[i]; 
         DataOut.pos = centers[i];
         if(i==0){
             DataOut.TexCoords =  vec2(0,1);
@@ -341,7 +526,7 @@ void main()
 
 	    gl_Position = m_pvm * (j[i]);
 
-        DataOut.square_normal = -1*n[i]; 
+        DataOut.normal = vec3(0,0,1);
         DataOut.pos = centers[i];
         if(i==1){
             DataOut.TexCoords =  vec2(1,0);
@@ -364,8 +549,9 @@ void main()
         float z = ((z1-c)+(c-z2))*scale;
         float y = sqrt(1-pow(x,2)-pow(z,2));
         n[i] = normalize(vec4(x,y,z,0));
+        DataOut.normal = vec3(0,0,1);
 	    gl_Position = m_pvm * (p[i]);
-        DataOut.square_normal = -1*n[i]; 
+
         DataOut.pos = centers[i];
         if (i==1){
             DataOut.TexCoords =  vec2(0,0);
@@ -392,10 +578,9 @@ void main()
         float z = ((z1-c)+(c-z2))*scale;
         float y = sqrt(1-pow(x,2)-pow(z,2));
         n[i] = normalize(vec4(x,y,z,0));
-
+        DataOut.normal = vec3(0,0,-1);
 	    gl_Position = m_pvm * (j[i]);
 
-        DataOut.square_normal = n[i]; 
         DataOut.pos = centers[i];
         if(i==0){
             DataOut.TexCoords =  vec2(1,0);
@@ -421,10 +606,10 @@ void main()
         float z = ((z1-c)+(c-z2))*scale;
         float y = sqrt(1-pow(x,2)-pow(z,2));
         n[i] = normalize(vec4(x,y,z,0));
-
+        DataOut.normal = vec3(0,0,-1);
 	    gl_Position = m_pvm * (p[i]);
 
-        DataOut.square_normal = n[i]; 
+
         DataOut.pos = centers[i];
         if (i==0){
             DataOut.TexCoords =  vec2(0,0);
@@ -438,5 +623,14 @@ void main()
     EndPrimitive();   
     
 
+    //Tree
+    
+    //Trunk
+
+
+    if(perlin2d(pos.xz) )
+        Trunk(height);
+
 }
+
 

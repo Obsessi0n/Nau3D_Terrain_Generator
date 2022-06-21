@@ -9,11 +9,11 @@ uniform sampler2D snow;
 uniform sampler2D grass;
 uniform int tesselation;
 uniform int TEXSEED;
-
+uniform mat4 m_pvm;
 in Data {
 	vec2 pos;
 	vec2 TexCoords;
-	vec4 square_normal;
+    vec3 normal;
 	vec4 posicao;
 } DataIn;
 
@@ -92,33 +92,43 @@ void main()
 {
 	float intensity;
 	vec3 n, l;
+    vec4 diffuse;
 
-	l = normalize(vec3(view_matrix * -light_dir));
-	n = normalize(DataIn.square_normal.xyz);
-	intensity = max(dot(l,n),0.0);
+	l = normalize(vec3(m_pvm * -light_dir));
+
+
+
+	n = normalize(DataIn.normal);
+
+	intensity = max(dot(n,l),0.0);
+
 
 
 
 	float height = perlin2d(DataIn.posicao.xz);
 
 	if(height > 0.25 && height < 0.5){
-		vec4 eColor = texture(noise, DataIn.TexCoords)+intensity * 0.2;
-		colorOut = eColor;
+        diffuse = texture(noise, DataIn.TexCoords);
+
 	}
 	else if(height<=0.25){
-		vec4 eColor = texture(stone, DataIn.TexCoords)+intensity * 0.2;
-		colorOut = eColor;
+        diffuse = texture(stone, DataIn.TexCoords);
+
 	}
 	else if(height>= 0.5 && height <0.75){
-		vec4 eColor = texture(grass, DataIn.TexCoords)+intensity * 0.2;
-		colorOut = eColor;
+        diffuse = texture(grass, DataIn.TexCoords);
+
 	}
 	else{
-		vec4 eColor = texture(snow, DataIn.TexCoords);
-		colorOut = eColor;
+        diffuse = texture(snow, DataIn.TexCoords);
+
 	}
 	
-	//colorOut = (height_color * intensity) + height_color * 0.2;
+
+
+    vec4 eColor = (intensity + 0.35) * diffuse;
+	colorOut = eColor;
+
 
 
 
