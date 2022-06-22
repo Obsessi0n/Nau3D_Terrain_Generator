@@ -17,6 +17,7 @@ uniform int SEED;
 out Data {
     vec2 pos;
     vec2 TexCoords;
+    float water;
     vec3 normal;
     vec4 posicao;
 } DataOut;
@@ -373,7 +374,12 @@ void main()
     float height = ceil(perlin2d(pos.xz)*altura)/10;
 
     float depth = 0.1;
-
+    if(height<=0.1){
+        DataOut.water = 1;
+    }
+    else{
+        DataOut.water = 0;
+    }
     //Desenhar Cubos do mapa
     CubeGenerator(pos, height, width, width, depth);
 }

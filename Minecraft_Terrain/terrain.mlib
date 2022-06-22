@@ -6,6 +6,7 @@
         <texture name="stone" filename="textures/noise/stone.png" />
         <texture name="snow" filename="textures/noise/snow.png" />
         <texture name="grass" filename="textures/noise/grass.png" />
+        <texture name="Water" filename="textures/noise/Water.png" />
     </textures>
 
     <shaders>
@@ -44,6 +45,8 @@
                                                 component="UNIT" id=2 />
                     <valueof uniform="grass" 	type="TEXTURE_BINDING" context="CURRENT"
                                                 component="UNIT" id=3 />
+                    <valueof uniform="Water" 	type="TEXTURE_BINDING" context="CURRENT"
+                                                component="UNIT" id=4 />
                     
                     <valueof uniform="scale" 	type="RENDERER" context="CURRENT" 
 												component="scale"  />
@@ -78,6 +81,7 @@
                 <texture name="stone"  UNIT="1" />
                 <texture name="snow"  UNIT="2" />
                 <texture name="grass"  UNIT="3" />
+                <texture name="Water"  UNIT="4" />
             </textures>
         </material>
     </materials>

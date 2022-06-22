@@ -7,12 +7,14 @@ uniform sampler2D noise;
 uniform sampler2D stone;
 uniform sampler2D snow;
 uniform sampler2D grass;
+uniform sampler2D Water;
 uniform int tesselation;
 uniform int TEXSEED;
 uniform mat4 m_pvm;
 in Data {
 	vec2 pos;
 	vec2 TexCoords;
+    float water;
     vec3 normal;
 	vec4 posicao;
 } DataIn;
@@ -107,27 +109,33 @@ void main()
 
 	float height = perlin2d(DataIn.posicao.xz);
 
-	if(height > 0.25 && height < 0.5){
-        diffuse = texture(noise, DataIn.TexCoords);
-
-	}
-	else if(height<=0.25){
+    /*if(DataIn.water == 1){
+        diffuse = texture(Water, DataIn.TexCoords);
+    }
+    else
+    {
+        */
+    if(height<=0.25){
         diffuse = texture(stone, DataIn.TexCoords);
 
 	}
-	else if(height>= 0.5 && height <0.75){
+    else if(height > 0.25 && height < 0.5){
+        diffuse = texture(noise, DataIn.TexCoords);
+
+	}
+    	else if(height>= 0.5 && height <0.75){
         diffuse = texture(grass, DataIn.TexCoords);
 
 	}
-	else{
+    else{
         diffuse = texture(snow, DataIn.TexCoords);
         
 	}
 	
-
+    //}
 
     vec4 eColor = (intensity + 0.35) * diffuse;
-	colorOut = eColor;
+	colorOut = vec4(vec3(eColor),0.1);
 
 
 
