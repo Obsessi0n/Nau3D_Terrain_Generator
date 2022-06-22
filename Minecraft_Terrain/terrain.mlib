@@ -60,6 +60,8 @@
 												component="SEED"  />
                     <valueof uniform="TEXSEED" 	type="RENDERER" context="CURRENT" 
 												component="TEXSEED"  />
+                    <valueof uniform="PerlinFrequency" 	type="RENDERER" context="CURRENT" 
+												component="PerlinFrequency"  />
                     
                     <valueof uniform="altura" 	type="RENDERER" context="CURRENT" 
 												component="altura" />

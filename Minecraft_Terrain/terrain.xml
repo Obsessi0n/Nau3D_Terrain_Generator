@@ -8,6 +8,7 @@
 			<attribute name="altura" data="FLOAT" type="RENDERER" value=6.2 />
 			<attribute name="SEED" data="INT" type="RENDERER" value=42 />
 			<attribute name="TEXSEED" data="INT" type="RENDERER" value=12 />
+			<attribute name="PerlinFrequency" data="FLOAT" type="RENDERER" value=0.1 />
 		</attributes>
 		<scenes>
 			<scene name="skybox" >
@@ -135,6 +136,10 @@
 					component="SEED" def="min=0 max=256 step=1" />
 			<var label="TEXSEED" type="RENDERER" context="CURRENT" 
 					component="TEXSEED" def="min=0 max=256 step=1" />
+
+			<var label="PerlinFrequency" type="RENDERER" context="CURRENT" 
+					component="PerlinFrequency" def="min=0 max=5 step=0.01" />
+			
 
 		</window>
 		

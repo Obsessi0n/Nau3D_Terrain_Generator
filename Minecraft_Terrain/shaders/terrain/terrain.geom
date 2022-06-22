@@ -11,7 +11,7 @@ uniform int tesselation;
 uniform float width;
 uniform float altura;
 uniform int SEED;
-
+uniform float PerlinFrequency;
 
 
 out Data {
@@ -72,8 +72,8 @@ float noise2d(float x, float y)
 
 float perlin2d(vec2 position)
 {
-    float xa = position.x*0.1;//perlin_frequency;
-    float ya = position.y*0.1;//perlin_frequency;
+    float xa = position.x*PerlinFrequency;//perlin_frequency;
+    float ya = position.y*PerlinFrequency;//perlin_frequency;
     float amp = 1.0;
     float fin = 0;
     float div = 0.0;
