@@ -19,9 +19,5 @@ out Data {
 
 void main () {
 	DataOut.texCoord = texCoord0;
-	//DataOut.normal = normalize(m_normal * normal);
-	//DataOut.eye = -(m_viewModel * position);
-	//DataOut.l_dir = normalize(vec3(m_view * -l_dir));
-
 	gl_Position = m_pvm * position;	
 }
