@@ -6,9 +6,9 @@ The goal was to create a terraing generator using NAU3D (https://github.com/Nau3
 
 We decided to create a terrain similar to Minecraft using vertex shadders, geometry shadders and fragment shadders.
 
-We used the geometry shadders to draw a cube with 24 vertex and 6 faces, and we calculated it's height using perlin noise.
+We used the geometry shaders to draw a cube with 24 vertex and 6 faces, and we calculated it's height using perlin noise.
 
-On the fragment shadder we used another perlin noise to decide what texture the cube should have.
+On the fragment shader we used another perlin noise to decide what texture the cube should have.
 
 All these parameters can be changed in runtime.
 
