@@ -11,3 +11,9 @@ We used the geometry shadders to draw a cube with 24 vertex and 6 faces, and we 
 On the fragment shadder we used another perlin noise to decide what texture the cube should have.
 
 All these parameters can be changed in runtime.
+
+#Final Result
+![alt text](https://github.com/Obsessi0n/VTR_Terrain_Generator/blob/main/Results/1.PNG?raw=true)
+![alt text](https://github.com/Obsessi0n/VTR_Terrain_Generator/blob/main/Results/2.PNG?raw=true)
+![alt text](https://github.com/Obsessi0n/VTR_Terrain_Generator/blob/main/Results/3.PNG?raw=true)
+![alt text](https://github.com/Obsessi0n/VTR_Terrain_Generator/blob/main/Results/4.PNG?raw=true)
